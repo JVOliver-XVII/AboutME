@@ -1,0 +1,185 @@
+.App {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  color: #ffffff;
+  position: relative;
+  z-index: 10;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-wrapper {
+  width: 600px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.card-container {
+  background: #101010e5;
+  border-radius: 20px;
+  padding: 2.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.card-header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  position: relative;
+  z-index: 2;
+}
+
+.avatar {
+  width: 140px;
+  height: 140px;
+  margin: 0 auto 1.5rem;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 4px solid #f97316;
+  box-shadow: 0 0 25px rgba(249, 115, 22, 0.5);
+}
+
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.avatar-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #f97316, #fb923c);
+  font-size: 3.5rem;
+  font-weight: bold;
+  color: white;
+}
+
+.card-header h1 {
+  font-size: 2.2rem;
+  margin: 0.5rem 0;
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.card-header h1 .name-highlight {
+  color: #f97316;
+}
+
+.card-header .role {
+  color: #f97316;
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin: 0;
+}
+
+.card-body {
+  margin: 1.5rem 0;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+
+.description {
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+  font-size: 1.05rem;
+  display: inline;
+}
+
+.p-tag-open,
+.p-tag-close {
+  color: #f97316;
+  font-weight: 600;
+  font-family: "Courier New", monospace;
+  font-size: 1.1rem;
+  user-select: none;
+}
+
+.description-text {
+  color: #ffffff;
+  line-height: 1.7;
+}
+
+.skills h3 {
+  color: #f97316;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  margin-top: 2rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.skills-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  justify-content: center;
+}
+
+.skill-tag {
+  background: rgba(249, 115, 22, 0.2);
+  border: 1px solid rgba(249, 115, 22, 0.4);
+  color: #fb923c;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+}
+
+.skill-tag:hover {
+  background: rgba(249, 115, 22, 0.3);
+  border-color: #f97316;
+  transform: translateY(-2px);
+}
+
+.card-footer {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(249, 115, 22, 0.2);
+  position: relative;
+  z-index: 2;
+}
+
+.social-links {
+  display: flex;
+  gap: 1.2rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.social-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.2rem;
+  background: rgba(249, 115, 22, 0.1);
+  border: 1px solid rgba(249, 115, 22, 0.3);
+  border-radius: 10px;
+  color: #fb923c;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.social-link:hover {
+  background: rgba(249, 115, 22, 0.2);
+  border-color: #f97316;
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(249, 115, 22, 0.3);
+}
+
+.social-link .icon {
+  font-size: 1.5rem;
+}
+
+.social-link .name {
+  font-weight: 500;
+}

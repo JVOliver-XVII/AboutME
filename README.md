@@ -58,18 +58,6 @@ npm install
 npm run dev
 ```
 
-4. Acesse no navegador:
-
-```
-http://localhost:5173
-```
-
-## 📦 Build para Produção
-
-```bash
-npm run build
-```
-
 Os arquivos otimizados serão gerados na pasta `dist/`.
 
 ## 🎯 Funcionalidades Principais
@@ -111,19 +99,6 @@ Para personalizar o cartão com suas informações:
 2. Substitua a imagem do perfil em `src/assets/profileIcon.png`
 
 3. Atualize os links das redes sociais no array `socialLinks`
-
-## 🌐 Deploy
-
-Este projeto pode ser facilmente implantado em plataformas como:
-
-- Vercel
-- Netlify
-- GitHub Pages
-- Render
-
-## 📄 Licença
-
-Este projeto está sob a licença MIT.
 
 ## 👨‍💻 Autor
 

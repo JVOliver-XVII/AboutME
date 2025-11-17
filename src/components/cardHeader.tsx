@@ -1,4 +1,6 @@
-import profileIcon from '../assets/profileIcon.png'
+import profileIcon from "../assets/profileIcon.png";
+import { TypingText } from "./TypingText";
+import { useState } from "react";
 
 interface CardHeaderProps {
   name: string;
@@ -7,6 +9,8 @@ interface CardHeaderProps {
 }
 
 export function CardHeader({ name, role, avatarUrl }: CardHeaderProps) {
+  const [showCursor, setShowCursor] = useState(true);
+
   return (
     <div className="card-header">
       <div className="avatar">
@@ -18,7 +22,20 @@ export function CardHeader({ name, role, avatarUrl }: CardHeaderProps) {
           </div>
         )}
       </div>
-      <h1>{name}</h1>
+      <h1>
+        <TypingText
+          duration={1.5}
+          delay={0.3}
+          fontSize=""
+          fontWeight=""
+          color=""
+          className="inline-block"
+          onComplete={() => setShowCursor(true)}
+        >
+          {name}
+        </TypingText>
+        {showCursor && <span className="cursor-blink">|</span>}
+      </h1>
       <p className="role">{role}</p>
     </div>
   );

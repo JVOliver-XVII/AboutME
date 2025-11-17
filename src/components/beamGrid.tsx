@@ -70,10 +70,15 @@ const BeamGridBackground: React.FC<BeamGridBackgroundProps> = ({
     if (!canvas || !container) return;
 
     const ctx = canvas.getContext("2d")!;
-    const rect = container.getBoundingClientRect();
-    canvas.width = rect.width;
-    canvas.height = rect.height;
 
+    const resizeCanvas = () => {
+      const rect = container.getBoundingClientRect();
+      canvas.width = rect.width;
+      canvas.height = rect.height;
+      return rect;
+    };
+
+    let rect = resizeCanvas();
     const cols = Math.floor(rect.width / gridSize);
     const rows = Math.floor(rect.height / gridSize);
 
@@ -98,32 +103,38 @@ const BeamGridBackground: React.FC<BeamGridBackgroundProps> = ({
     const allBeams = [...primaryBeams, ...extraBeams];
 
     const updateMouse = (e: MouseEvent) => {
-      const rect = container.getBoundingClientRect();
-      mouseRef.current.x = e.clientX - rect.left;
-      mouseRef.current.y = e.clientY - rect.top;
+      const currentRect = container.getBoundingClientRect();
+      mouseRef.current.x = e.clientX - currentRect.left;
+      mouseRef.current.y = e.clientY - currentRect.top;
       lastMouseMoveRef.current = Date.now();
     };
 
+    const handleResize = () => {
+      rect = resizeCanvas();
+    };
+
     if (interactive) window.addEventListener("mousemove", updateMouse);
+    window.addEventListener("resize", handleResize);
 
     const draw = () => {
-      ctx.clearRect(0, 0, rect.width, rect.height);
+      const currentRect = container.getBoundingClientRect();
+      ctx.clearRect(0, 0, currentRect.width, currentRect.height);
 
       const lineColor = isDarkMode ? darkGridColor : gridColor;
       const activeBeamColor = isDarkMode ? darkBeamColor : beamColor;
 
       ctx.strokeStyle = lineColor;
       ctx.lineWidth = 1;
-      for (let x = 0; x <= rect.width; x += gridSize) {
+      for (let x = 0; x <= currentRect.width; x += gridSize) {
         ctx.beginPath();
         ctx.moveTo(x, 0);
-        ctx.lineTo(x, rect.height);
+        ctx.lineTo(x, currentRect.height);
         ctx.stroke();
       }
-      for (let y = 0; y <= rect.height; y += gridSize) {
+      for (let y = 0; y <= currentRect.height; y += gridSize) {
         ctx.beginPath();
         ctx.moveTo(0, y);
-        ctx.lineTo(rect.width, y);
+        ctx.lineTo(currentRect.width, y);
         ctx.stroke();
       }
 
@@ -146,26 +157,29 @@ const BeamGridBackground: React.FC<BeamGridBackgroundProps> = ({
         if (beam.dir === "x") {
           const y = beam.y * gridSize;
           const beamLength = gridSize * 1.5;
-          const start = -beamLength + (beam.offset % (rect.width + beamLength));
+          const start =
+            -beamLength + (beam.offset % (currentRect.width + beamLength));
 
           ctx.moveTo(start, y);
           ctx.lineTo(start + beamLength, y);
           ctx.stroke();
 
           beam.offset += idle ? beam.speed * idleSpeed * 60 : beam.speed * 60;
-          if (beam.offset > rect.width + beamLength) beam.offset = -beamLength;
+          if (beam.offset > currentRect.width + beamLength)
+            beam.offset = -beamLength;
         } else {
           const x = beam.x * gridSize;
           const beamLength = gridSize * 1.5;
           const start =
-            -beamLength + (beam.offset % (rect.height + beamLength));
+            -beamLength + (beam.offset % (currentRect.height + beamLength));
 
           ctx.moveTo(x, start);
           ctx.lineTo(x, start + beamLength);
           ctx.stroke();
 
           beam.offset += idle ? beam.speed * idleSpeed * 60 : beam.speed * 60;
-          if (beam.offset > rect.height + beamLength) beam.offset = -beamLength;
+          if (beam.offset > currentRect.height + beamLength)
+            beam.offset = -beamLength;
         }
       });
 
@@ -219,9 +233,9 @@ const BeamGridBackground: React.FC<BeamGridBackgroundProps> = ({
 
               if (
                 cellX >= 0 &&
-                cellX < rect.width &&
+                cellX < currentRect.width &&
                 cellY >= 0 &&
-                cellY < rect.height
+                cellY < currentRect.height
               ) {
                 ctx.beginPath();
                 ctx.rect(cellX, cellY, gridSize, gridSize);
@@ -239,6 +253,7 @@ const BeamGridBackground: React.FC<BeamGridBackgroundProps> = ({
 
     return () => {
       if (interactive) window.removeEventListener("mousemove", updateMouse);
+      window.removeEventListener("resize", handleResize);
     };
   }, [
     gridSize,

@@ -24,6 +24,7 @@ export function CardFooter({ socialLinks }: CardFooterProps) {
           </a>
         ))}
       </div>
+
     </div>
   );
 }

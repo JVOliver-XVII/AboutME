@@ -21,7 +21,7 @@ function App() {
           role="Dev Full Stack"
           avatarUrl={profileIcon}
           description=" Olá, meu nome é João e sou desenvolvedor Full Stack. Graduando em Tecnologia em Sistemas de Computação "
-          skills={["ReactJs", "TypeScript", "NestJS", "CSS", "HTML", "Tailwind CSS", "Sass", "NodeJs", "Prisma", "SQL" ]}
+          skills={["ReactJs", "TypeScript", "NextJS", "CSS", "HTML", "Tailwind CSS", "Sass", "NodeJs", "Prisma", "SQL" ]}
           socialLinks={[
             {
               name: "GitHub",
@@ -39,9 +39,12 @@ function App() {
               icon: <DiscordIcon />,
             },
           ]}
+          
         />
+       
       </div>
     </BeamGridBackground>
+
   );
 }
 

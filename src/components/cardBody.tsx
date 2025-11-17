@@ -25,5 +25,6 @@ export function CardBody({ description, skills }: CardBodyProps) {
         </div>
       )}
     </div>
+    
   );
 }
